@@ -23,11 +23,18 @@ html {
 
 body {
   margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background: var(--bg);
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.65;
+}
+
+main {
+  flex: 1;
 }
 
 a {
@@ -86,6 +93,19 @@ h3 {
 .nav-links a:hover,
 .nav-links a:focus {
   color: var(--accent);
+}
+
+.nav-links a[aria-current="page"] {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.subpage .section:first-child {
+  padding-top: 64px;
+}
+
+.subpage .split-section:first-child {
+  border-top: none;
 }
 
 .section {

@@ -15,14 +15,24 @@ and no dependencies.
 ```
 .
 ├── _config.yml   # GitHub Pages / Jekyll config (single line: theme: jekyll-theme-cayman)
-├── index.html    # The entire site: one self-contained Chinese (zh-CN) page
+├── index.html    # Home page: hero + profile card (zh-CN)
+├── about.html    # 个人简介
+├── research.html # 研究方向
+├── teaching.html # 教学工作
+├── publications.html # 学术成果
+├── projects.html # 科研项目
+├── blog.html     # 博客
+├── contact.html  # 联系方式
 ├── style.css     # All styling, hand-written CSS with custom properties
 └── README.md     # Repo name only
 ```
 
-- `index.html` (`lang="zh-CN"`) is a complete standalone HTML document with inline
-  section anchors (`#about`, `#research`, `#teaching`, `#publications`, `#projects`,
-  `#blog`, `#contact`) used by the sticky top navigation.
+- All pages are complete standalone HTML documents (`lang="zh-CN"`) sharing the same
+  header, sticky top navigation, and footer. Nav links point between pages
+  (`about.html`, `research.html`, etc.); the current page's nav link carries
+  `aria-current="page"` and is highlighted in bold.
+- Subpages wrap their content in `<main class="subpage">`; `index.html` uses a plain
+  `<main>` with the full-height `.hero` section.
 - `style.css` defines the design system via CSS custom properties in `:root`
   (`--accent`, `--accent-dark`, `--max-width`, `--radius`, `--shadow`, etc.) and
   responsive breakpoints at `860px` and `560px`.
@@ -47,8 +57,9 @@ There is no build and no test suite.
   not required.
 - **Deploy:** push to the `main` branch of the GitHub remote; GitHub Pages rebuilds and
   publishes automatically within a minute or two. There is no CI pipeline.
-- **Verification after changes:** load the page, check the nav anchor links, and check
-  layout at desktop width plus the `860px` and `560px` breakpoints (browser dev tools).
+- **Verification after changes:** load the pages, check the nav links between pages, and
+  check layout at desktop width plus the `860px` and `560px` breakpoints (browser dev
+  tools).
 
 ## Code style guidelines
 
@@ -56,8 +67,10 @@ There is no build and no test suite.
   names and technical terms where helpful (e.g. `许达兴（Daxing Xu）`, `Java`, `R 语言`,
   `Linux`, `Shell`). Keep this convention when adding content.
 - **HTML:** semantic elements (`header`, `nav`, `main`, `section`, `article`,
-  `footer`); section `id`s must match the nav links; include `aria-label` on landmark
-  regions as the existing markup does.
+  `footer`); nav `href`s must match the page file names; mark the current page's nav
+  link with `aria-current="page"`; include `aria-label` on landmark regions as the
+  existing markup does. Every new page needs the shared header/footer and must be added
+  to the nav of **all** pages.
 - **CSS:** add new colors/spacing as custom properties in `:root` rather than magic
   values; reuse existing classes (`.section`, `.card`, `.section-label`,
   `.muted-section`, etc.) before inventing new ones; keep layout responsive — any new
